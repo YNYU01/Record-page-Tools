@@ -1,10 +1,10 @@
 <style>
     :root {
         --color1:hsl(0,0%,50%);/*表头填充*/
-        --color2:hsl(0,0%,80%);/*表头字色*/
-        --color3:hsl(0,0%,90%);/*行内默认字色、底框描边色*/
-        --color4:hsl(0,0%,60%);/*行间区分色*/
-        --color5:hsl(0,0%,70%);/*（主色）底框背景色、翻页器选中色*/
+        --color2:hsl(0,0%,85%);/*表头字色*/
+        --color3:hsl(0,0%,100%);/*行内默认字色、底框描边色*/
+        --color4:hsl(0,0%,56%);/*行间区分色*/
+        --color5:hsl(0,0%,65%);/*（主色）底框背景色、翻页器选中色*/
         --noteColor:rgba(255,255,255,40);/*注释字色*/
         --hlColor1:hsl(20, 100%, 60%);/*高亮字色1，给数量*/
         --hlColor2:hsl(280, 100%, 60%);/*高亮字色2，备用*/
@@ -49,6 +49,7 @@
         height: 54px;
         text-align: center;
         font-size: 24px;
+        font-weight: 700;
         line-height: 24px;
         display: flex;
         justify-content: left;
@@ -63,6 +64,7 @@
         min-height: 60px;
         text-align: center;
         font-size: 24px;
+        font-weight: 500;
         line-height: 1 ;
         display: flex;
         justify-content: left;
@@ -175,27 +177,27 @@
         cursor: pointer;
       }
 
-      .tips2 .tips2text{
-        visibility: hidden;
-        width: 120px;
-        background-color: #000000d0;
-        color: #ffffffac;
-        text-align: left;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 4%;
-        left: 30%;
-        transform: translateX(10%);
-        opacity: 1;
-        transition: opacity 0.3s;
-      }
+    .tips2 .tips2text{
+    visibility: hidden;
+    width: 120px;
+    background-color: #000000d0;
+    color: #ffffffac;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 4%;
+    left: 30%;
+    transform: translateX(20%);
+    opacity: 1;
+    transition: opacity 0.3s;
+    }
 
-      .tips2:hover .tips2text{
-        visibility: visible;
-        opacity: 1;
-      }
+    .tips2:hover .tips2text{
+    visibility: visible;
+    opacity: 1;
+    }
 
     .tips3{
         padding: 20px;
@@ -379,9 +381,10 @@
                 <div style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-配置颜色-]</div> 
                   <!--颜色选择和预览-->
                 <div style=" display: flex; justify-content:left; position: relative; margin: 0 0 10px 10px;">
-                    <input type="text" id="colorValue" value="#293da3" style="width:60px; height:26px; border-radius: 4px; border:1px solid #727272; ">
+                    <div class="text-1" style="height:24px;display: flex; align-items: center; position: relative;  ">主题色：</div>
+                    <input type="text" id="colorValue" value="#808080" style="width:60px; height:26px; border-radius: 4px; border:1px solid #727272; ">
                     <div style="width: 51px; height: 26px; border:1px solid #727272; border-radius: 6px;">
-                        <input type="color" value="#293da3" id="colorPicker" style=" width: 30px; height:26px; border-radius: 4px 0px 0px 4px; border:1px solid #727272;" oninput="updateColorValue()"><!--主题色选择-->
+                        <input type="color" value="#808080" id="colorPicker" style=" width: 30px; height:26px; border-radius: 4px 0px 0px 4px; border:1px solid #727272;" oninput="updateColorValue()"><!--主题色选择-->
                         <div class="tips2" style="position: absolute;">        
                         <span class="tips2text" style="font-size: 10px; text-align: center;">关闭后可选择非安全色</span>
                         <input type="checkbox" style="display: none;"  id="safaSwitch" ></input>
@@ -528,7 +531,29 @@
     customElements.define('data-hltext2', datahltext2);
 
     window.onload = function() {
-        dataflex()
+        const root = document.documentElement;
+        var checkboxes = document.getElementsByClassName("checkbox");
+        var count = 0;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+            count++;
+            }
+        }
+        var dataTotal = count
+        
+        if (dataTotal > 3 ){
+            root.style.setProperty('--dataTimeW', '6ch')
+            root.style.setProperty('--dataNameTextW', '10ch')
+            
+        }else{
+            root.style.setProperty('--dataTimeW', '11ch')
+            root.style.setProperty('--dataNameTextW', '13ch')
+        }
+
+        var elements = document.getElementsByClassName("table-line-text");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].id = "data-" + (i + 1);   
+        }
         datanameflex()
         menudisplay()
         datanamechange()
@@ -708,32 +733,47 @@
     //安全模式
     var checkbox1 = document.getElementById("safaSwitch")
     if (checkbox1.checked){
+        if (l>128){
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = true;
         changeColor()
+        updateColorValue()
+        }else {
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = false;
+        changeColor()
+        updateColorValue()
+        }
+        
     }else{
         //先判断明度，再判断饱和度
         if (l > 220){
         darktips2()
         }else if ( l < 50){
         lighttips2()
-        }else if ( l <= 220 , l > 128 ){
+        }else if ( l <= 220 , l > 170 ){
             var checkbox = document.getElementById("themeSwitch");
-            checkbox.checked = true;
-            if (s >= 50){ 
+            
+            if (s >= 70){ 
             stips1()
             } else if (s <= 10){
             stips2()
             } else {
+            checkbox.checked = true;
             changeColor()
+            updateColorValue()
             }
         }else {
             var checkbox = document.getElementById("themeSwitch");
-            checkbox.checked = false;
+            
             if (s >= 78){ 
             stips1()
             } else if (s <= 18){
             stips2()
             } else {
+            checkbox.checked = false;
             changeColor()
+            updateColorValue()
             }
         }
     }
@@ -755,12 +795,24 @@
     function colorlight(){
         const color = colorPicker.value;
         const hsl = rgbToHsl(hexToRgb(color));
+        root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
+        root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s * 1.1 }%, ${hsl.l + 35}%)`);
+        root.style.setProperty('--color3', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 50}%)`);
+        root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 1.1 }%, ${hsl.l + 6}%)`);
+        root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s * 1.1}%, ${hsl.l + 15}%)`);
+        root.style.setProperty('--noteColor','rgba(255,255,255,40)');
         
     }
     //暗字色主题
     function colordark(){
         const color = colorPicker.value;
         const hsl = rgbToHsl(hexToRgb(color));
+        root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
+        root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s * 0.9 }%, ${hsl.l - 35}%)`);
+        root.style.setProperty('--color3', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l - 50}%)`);
+        root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 0.9 }%, ${hsl.l - 5}%)`);
+        root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s * 0.9}%, ${hsl.l - 15}%)`);
+        root.style.setProperty('--noteColor','rgba(255,255,255,40)');
         
     }
 
