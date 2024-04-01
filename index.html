@@ -1,305 +1,320 @@
-<style>
-    :root {
-        --color1:hsl(0,0%,50%);/*表头填充*/
-        --color2:hsl(0,0%,85%);/*表头字色*/
-        --color3:hsl(0,0%,100%);/*行内默认字色、底框描边色*/
-        --color4:hsl(0,0%,56%);/*行间区分色*/
-        --color5:hsl(0,0%,65%);/*（主色）底框背景色、翻页器选中色*/
-        --noteColor:rgba(255,255,255,40);/*注释字色*/
-        --hlColor1:hsl(20, 100%, 60%);/*高亮字色1，给数量*/
-        --hlColor2:hsl(280, 100%, 60%);/*高亮字色2，备用*/
-        --hlColor3:hsl(185, 100%, 60%);/*高亮字色3，备用*/
-        --LR:24px;/*左右间距*/
-        --TB:14px;/*上下间距*/
-        --dataTimeW:11ch;/*控制日期字符宽*/
-        --dataNameTextW:13ch;/*控制名称字符宽*/
-        --switch1:#707070;
-        --switch2:#ffffff;
-        --switch3:#000000;
-        --switch4:#e3ca26;
-    }
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Record-page Tools</title>
+    <style>
+        :root {
+            --color1:hsl(0,0%,50%);/*表头填充*/
+            --color2:hsl(0,0%,85%);/*表头字色*/
+            --color3:hsl(0,0%,100%);/*行内默认字色、底框描边色*/
+            --color4:hsl(0,0%,56%);/*行间区分色*/
+            --color5:hsl(0,0%,65%);/*（主色）底框背景色、翻页器选中色*/
+            --noteColor:rgba(255,255,255,40);/*注释字色*/
+            --hlColor1:hsl(20, 100%, 60%);/*高亮字色1，给数量*/
+            --hlColor2:hsl(280, 100%, 60%);/*高亮字色2，备用*/
+            --hlColor3:hsl(185, 100%, 60%);/*高亮字色3，备用*/
+            --LR:24px;/*左右间距*/
+            --TB:14px;/*上下间距*/
+            --dataTimeW:11ch;/*控制日期字符宽*/
+            --dataNameTextW:13ch;/*控制名称字符宽*/
+            --switch1:#707070;
+            --switch2:#ffffff;
+            --switch3:#000000;
+            --switch4:#e3ca26;
+        }
 
-    body{
-        display: flex;
-        position: relative;
-        justify-content: center;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+        body{
+            display: flex;
+            position: relative;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    .text-1{
-        font-size: 16px;
-        font-weight: 500;
-        text-align:left;
-      }
-
-    .table-frame{
-        width: 706px;
-        height: 1012px;
-        border: var(--color3) 2px solid;
-        border-radius: 8px;
-        background-color: var(--color5);
-        overflow:hidden;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-    }
-
-    .table-top{
-        width: 706px;
-        height: 54px;
-        text-align: center;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 24px;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-        background-color: var(--color1);
-    }
-
-    .table-line{
-        width: 706px;  
-        padding: 16px 0 16px 0;      
-        height: auto;
-        min-height: 60px;
-        text-align: center;
-        font-size: 24px;
-        font-weight: 500;
-        line-height: 1 ;
-        display: flex;
-        justify-content: left;
-        align-items: center;
+        .bg-img{
+            background-image:url('https://s.mj.run/HzeVkIGcO-I') ;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: top;
+            overflow: hidden;
+        }
         
-    }
+        .text-1{
+            font-size: 16px;
+            font-weight: 500;
+            text-align:left;
+        }
 
-    .table-area{
-        background-color: var(--color4);
-    }
+        .table-frame{
+            width: 706px;
+            height: 1012px;
+            border: var(--color3) 2px solid;
+            border-radius: 8px;
+            background-color: var(--color5);
+            overflow:hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
 
-    .table-top-text{
-        width: 100vw;
-        color: var(--color2);
+        .table-top{
+            width: 706px;
+            height: 54px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 24px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            background-color: var(--color1);
+        }
+
+        .table-line{
+            width: 706px;  
+            padding: 16px 0 16px 0;      
+            height: auto;
+            min-height: 60px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1 ;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            
+        }
+
+        .table-area{
+            background-color: var(--color4);
+        }
+
+        .table-top-text{
+            width: 100vw;
+            color: var(--color2);
+            
+        }
+
+        .table-line-text{
+            width: 100vw;
+            height: auto;
+            padding: 0 1ch 0 1ch;
+            color: var(--color3);  
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            align-items: center;
+            position: relative;
+        }
+
+        .table-line-timetext{
+            width: 100vw;
+            max-width: 200px;
+            height: auto;
+            padding: 0 1ch 0 1ch;
+            color: var(--color3);  
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .data-time{
+            width: var(--dataTimeW);
+            
+        }
         
-    }
+        .data-nametext{
+            width:var(--dataNameTextW) ;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
-    .table-line-text{
-        width: 100vw;
-        height: auto;
-        padding: 0 1ch 0 1ch;
-        color: var(--color3);  
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        align-items: center;
-        position: relative;
-    }
+        .data-text{
+            width:9ch ;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
-    .table-line-timetext{
-        width: 100vw;
-        max-width: 200px;
-        height: auto;
-        padding: 0 1ch 0 1ch;
-        color: var(--color3);  
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
+        .data-num{
+            color:var(--hlColor1)
+        }
 
-    .data-time{
-        width: var(--dataTimeW);
+        .data-hltext1{
+            color:var(--hlColor2)
+        }
+
+        .data-hltext2{
+            color:var(--hlColor3)
+        }
+
+        .data-mix{
+            display: flex;
+            height: 2ch;
+            padding: 0 1ch 0 0;
+        }
+
+        .icon-living{
+            width: 24px;
+            height: 24px; 
+            background:url('https://dev.cc.163.com/_nextroom/_next/static/images/category/online.gif?3854') ; 
+            display: block;
+        }
+
+        .select{
+            width:120px; 
+            height:24px;
+            background-color: #d4d4d4; 
+            border-radius: 4px; 
+            border:1px solid #727272;
+        }
+
+        .select option:checked{
+            background-color: #808080; 
+        }
+
+        .select option:hover{
+            background-color: #808080; 
+        }
         
-    }
-    
-    .data-nametext{
-        width:var(--dataNameTextW) ;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+        .checkbox{
+            height:12px;
+        }
 
-    .data-text{
-        width:9ch ;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+        .tips2{
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
 
-    .data-num{
-        color:var(--hlColor1)
-    }
-
-    .data-hltext1{
-        color:var(--hlColor2)
-    }
-
-    .data-hltext2{
-        color:var(--hlColor3)
-    }
-
-    .data-mix{
-        display: flex;
-        height: 2ch;
-        padding: 0 1ch 0 0;
-    }
-
-    .icon-living{
-        width: 24px;
-        height: 24px; 
-        background:url('https://dev.cc.163.com/_nextroom/_next/static/images/category/online.gif?3854') ; 
-        display: block;
-    }
-
-    .select{
-        width:120px; 
-        height:24px;
-        background-color: #d4d4d4; 
-        border-radius: 4px; 
-        border:1px solid #727272;
-    }
-
-    .select option:checked{
-        background-color: #808080; 
-    }
-
-    .select option:hover{
-        background-color: #808080; 
-    }
-    
-    .checkbox{
-        height:12px;
-    }
-
-    .tips2{
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-      }
-
-    .tips2 .tips2text{
-    visibility: hidden;
-    width: 120px;
-    background-color: #000000d0;
-    color: #ffffffac;
-    text-align: left;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    top: 4%;
-    left: 30%;
-    transform: translateX(20%);
-    opacity: 1;
-    transition: opacity 0.3s;
-    }
-
-    .tips2:hover .tips2text{
-    visibility: visible;
-    opacity: 1;
-    }
-
-    .tips3{
-        padding: 20px;
-        background-color: #000000ba;
-        color: #fff; 
+        .tips2 .tips2text{
+        visibility: hidden;
+        width: 120px;
+        background-color: #000000d0;
+        color: #ffffffac;
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
         z-index: 1;
-        bottom: 20%; 
-        position: absolute;
-        font-size: 24px;
-        border-radius: 20px; 
-      }
-
-      .button {
-        text-align: center;
-        line-height: 8px;
-        width:80px; 
-        height:26px; 
-        border-radius: 4px;
-        background-color: rgb(92, 141, 190);
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-      }
-
-      .button:hover {
-        background-color: rgb(63, 113, 164);
-      }
-
-      .button2 {
-        text-align: center;
-        line-height: 8px;
-        width:80px; 
-        height:26px; 
-        border-radius: 4px;
-        background-color: rgb(218, 218, 218);
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-      }
-
-      .button2:hover {
-        background-color: rgb(120, 120, 120);
-      }
-      
-      .safa-switch {
-        position: absolute;
-        display: inline-block;
-        color:var(--switch3);
-        background-color: var(--switch4); 
-        border-radius:0px 4px 4px 0px;       
-      }
-
-      .theme-switch {
-        position: absolute;
-        display: inline-block;
-        width: 32px;
-        height: 14px;
-        background-color:var(--switch1);
-        border-radius: 17px;
-        margin-top: 0px;
-      }
-
-      .theme-switch::before {        
-        content: "";
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: var(--switch2);
-        top: 2px;
-        left: 2px;
-        transition: transform 0.3s;
-      }
-
-      input[type="checkbox"]:checked + .theme-switch::before {
-        transform: translateX(18px);
-      }
-
-      
-
-    @keyframes tipsPickup {
-    0%{
-        opacity: 0;
-        transform: translatey(50%);
-    }
-    20%{
+        top: 4%;
+        left: 30%;
+        transform: translateX(20%);
         opacity: 1;
-        transform: translatey(0);
-    }
-    70%{
-        opacity: 1;
-        transform: scale(1);
-    }
-    100%{
-        opacity: 0;
-        transform: scale(1.05);
-    }
-    }
+        transition: opacity 0.3s;
+        }
 
-</style>
+        .tips2:hover .tips2text{
+        visibility: visible;
+        opacity: 1;
+        }
+
+        .tips3{
+            padding: 20px;
+            background-color: #000000ba;
+            color: #fff; 
+            z-index: 1;
+            bottom: 20%; 
+            position: absolute;
+            font-size: 24px;
+            border-radius: 20px; 
+        }
+
+        .button {
+            text-align: center;
+            line-height: 8px;
+            width:80px; 
+            height:26px; 
+            border-radius: 4px;
+            background-color: rgb(92, 141, 190);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: rgb(63, 113, 164);
+        }
+
+        .button2 {
+            text-align: center;
+            line-height: 8px;
+            width:80px; 
+            height:26px; 
+            border-radius: 4px;
+            background-color: rgb(218, 218, 218);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button2:hover {
+            background-color: rgb(120, 120, 120);
+        }
+        
+        .safa-switch {
+            position: absolute;
+            display: inline-block;
+            color:var(--switch3);
+            background-color: var(--switch4); 
+            border-radius:0px 4px 4px 0px;       
+        }
+
+        .theme-switch {
+            position: absolute;
+            display: inline-block;
+            width: 32px;
+            height: 14px;
+            background-color:var(--switch1);
+            border-radius: 17px;
+            margin-top: 0px;
+        }
+
+        .theme-switch::before {        
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--switch2);
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+
+        input[type="checkbox"]:checked + .theme-switch::before {
+            transform: translateX(18px);
+        }
+
+        
+
+        @keyframes tipsPickup {
+        0%{
+            opacity: 0;
+            transform: translatey(50%);
+        }
+        20%{
+            opacity: 1;
+            transform: translatey(0);
+        }
+        70%{
+            opacity: 1;
+            transform: scale(1);
+        }
+        100%{
+            opacity: 0;
+            transform: scale(1.05);
+        }
+        }
+
+    </style>
+</head>
 
 <body>
     <div style="width: 750px; height: 800px;background-color: rgb(193, 193, 193); border-radius: 8px;overflow: hidden;">
@@ -315,7 +330,7 @@
         
         <div style="display: flex;justify-content:left; ">
             <!--菜单栏-->
-            <div style="width: 320px; height: auto; background-color: rgb(219, 219, 219);">
+            <div style="width: 330px; height: 800px; background-color: rgb(219, 219, 219);">
                 <div style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-配置数据-]</div>
                 <!--表头配置-->
                 <div style="height: 26px; margin: 0 0 10px  10px; display: flex; justify-content:left;align-items: first baseline; position: relative;"> 
@@ -396,9 +411,9 @@
                     
                 </div>
             </div>
-            <div style="width: 375px;margin: 30px 0px 0px 30px;">
+            <div id="export-img" style="width: 375px; height:600px ; margin: 1vw 0 0 1.1vw;">
                 <!--记录页-->
-                <div style="transform: scale(0.5); transform-origin: left top;display: flex; flex-direction: column; align-items: center;  width: 750px;height: 1200px; background-image:url('https://s.mj.run/HzeVkIGcO-I') ;">
+                <div class="bg-img" style="transform: scale(0.5); transform-origin: left top;display: flex; flex-direction: column; align-items: center;  width: 750px;height: 1200px; ">
                     <div id="pickertips" class="tips3" style="display: none;">tips</div>
                     <div style="width: 750px;height: 144px;"></div>
                     <div class="table-frame" >
@@ -1068,3 +1083,5 @@
     
     
 </script>
+
+</html>
