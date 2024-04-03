@@ -11,14 +11,12 @@
             --color3:hsl(0,0%,100%);/*行内默认字色、底框描边色*/
             --color4:hsl(0,0%,56%);/*行间区分色*/
             --color5:hsl(0,0%,65%);/*（主色）底框背景色、翻页器选中色*/
-            --noteColor:rgba(255,255,255,40);/*注释字色*/
-            --hlColor1:hsl(20, 100%, 60%);/*高亮字色1，给数量*/
-            --hlColor2:hsl(280, 100%, 60%);/*高亮字色2，备用*/
-            --hlColor3:hsl(185, 100%, 60%);/*高亮字色3，备用*/
-            --LR:24px;/*左右间距*/
-            --TB:14px;/*上下间距*/
-            --dataTimeW:11ch;/*控制日期字符宽*/
-            --dataNameTextW:13ch;/*控制名称字符宽*/
+            --noteColor:rgba(255, 255, 255, 0.4);/*注释字色*/
+            --hlColor1:hsl(20,100%,60%);/*高亮字色1，给数量*/
+            --hlColor2:hsl(280,100%,60%);/*高亮字色2，备用*/
+            --hlColor3:hsl(185,100%,60%);/*高亮字色3，备用*/
+            --dataTimeW:6ch;/*控制日期字符宽*/
+            --dataNameTextW:11ch;/*控制名称字符宽*/
             --switch1:#707070;
             --switch2:#ffffff;
             --switch3:#000000;
@@ -44,11 +42,19 @@
             font-size: 16px;
             font-weight: 500;
             text-align:left;
+            user-select: none;
+        }
+
+        .text-2{
+            font-size: 12px;
+            font-weight: 500;
+            text-align:left;
         }
 
         .table-frame{
             width: 706px;
-            height: 1012px;
+            height: 100vw;
+            max-height: 1012px;
             border: var(--color3) 2px solid;
             border-radius: 8px;
             background-color: var(--color5);
@@ -91,6 +97,8 @@
         }
 
         .table-top-text{
+            display: flex;
+            justify-content: center;
             width: 100vw;
             color: var(--color2);
             
@@ -158,11 +166,40 @@
             padding: 0 1ch 0 0;
         }
 
+        .note-text{
+            font-size: 22px;
+            font-weight: 500;
+            text-align: center;
+            color: var(--noteColor);
+        }
+
         .icon-living{
             width: 24px;
             height: 24px; 
             background:url('https://dev.cc.163.com/_nextroom/_next/static/images/category/online.gif?3854') ; 
             display: block;
+        }
+
+        .icon-more{
+            width: 66px;
+            height: 66px; 
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .icon-back{
+            width: 66px;
+            height: 66px; 
+        }
+
+        .icon-refresh{
+            width: 66px;
+            height: 66px; 
+        }
+
+        .icon-close{
+            width: 66px;
+            height: 66px; 
         }
 
         .select{
@@ -182,6 +219,10 @@
         }
         
         .checkbox{
+            height:12px;
+        }
+
+        .checkbox2{
             height:12px;
         }
 
@@ -257,6 +298,31 @@
         .button2:hover {
             background-color: rgb(120, 120, 120);
         }
+
+        .pageModeCheck {           
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            user-select: none;
+            width: 60px;
+            height: 20px;
+            align-items: center;           
+            font-size: 14px;
+            color:#707070;
+            background-color: #a6a6a6; 
+            border-radius:10px;  
+            box-shadow: 0px 1px 0px #0000002d inset;       
+        }
+
+        
+
+        input[type="checkbox"]:checked +  .pageModeCheck{
+            color:#3e3e3e;
+            background-color: #d2d2d2;
+            box-shadow: 0px 1px 0px #00000071,0px 1px 0px #ffffff2d inset;
+            transform: translateY(-2px);
+        }
         
         .safa-switch {
             position: absolute;
@@ -317,10 +383,10 @@
 </head>
 
 <body>
-    <div style="width: 750px; height: 800px;background-color: rgb(193, 193, 193); border-radius: 8px;overflow: hidden;">
+    <div style="width: 1080px; height: 800px;background-color: rgb(193, 193, 193); border-radius: 8px;overflow: hidden;">
         
         <!--top-->
-        <div style="width: 750px;height: 40px;background-color: rgb(234, 234, 234); display: flex; position: relative; align-items: center;">
+        <div style="width: auto;height: 40px;background-color: rgb(234, 234, 234); display: flex; position: relative; align-items: center;">
             <!--主题开关-->
             <div style="width: 28px; height: 14px;position: absolute; right: 10px; ">
                 <input type="checkbox" style="display: none;" id="themeSwitch" ></input>
@@ -328,16 +394,16 @@
             </div> 
         </div>
         
-        <div style="display: flex;justify-content:left; ">
+        <div style="display: flex;justify-content:space-between; ">
             <!--菜单栏-->
-            <div style="width: 330px; height: 800px; background-color: rgb(219, 219, 219);">
-                <div style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-配置数据-]</div>
+            <div style="width: 330px; min-width: 330px; height: 800px; background-color: rgb(219, 219, 219);">
+                <div class="text-1"  style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-配置数据-]</div>
                 <!--表头配置-->
                 <div style="height: 26px; margin: 0 0 10px  10px; display: flex; justify-content:left;align-items: first baseline; position: relative;"> 
-                    <input class="checkbox" type="checkbox" id="datadisplay-1" checked="checked" disabled></input>
+                    <input class="checkbox2" type="checkbox"  checked="checked" disabled></input>
                     <div class="text-1" style="height:24px;display: flex; align-items: center; position: relative;  ">数据1：</div>
                     <div id="menu1" >
-                    <input type="text" id="dataName1" value="时间" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
+                    <input type="text" id="dataName1" placeholder="例：时间" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
                     <select id="data-check-1" class="select">
                         <option value="<data-time></data-time>">日期字段</option>
                         <!--option value="<data-text></data-text>">普通字段</option>
@@ -349,11 +415,11 @@
                     </div>
                 </div>
                 <div style="height: 26px; margin: 0 0 10px  10px;  display: flex; justify-content:left;align-items: first baseline; position: relative;"> 
-                    <input class="checkbox" type="checkbox" id="datadisplay-2"checked="checked" disabled></input>
-                    <div class="text-1" style="height:26px;display: flex; align-items: center; position: relative;  ">数据2：</div>
+                    <input class="checkbox" type="checkbox" id="datadisplay-2" checked="checked" ></input>
+                    <div class="text-1" style="height:26px;display: flex; align-items: center; position: relative; ">数据2：</div>
                     <div id="menu2" >
-                    <input type="text" id="dataName2" value="主播" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
-                    <select id="data-check-2" class="select">
+                    <input type="text" id="dataName2" placeholder="例：主播" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
+                    <select id="data-check-2" class="select" onclick="data2check()">
                         <option value=" <div class='data-mix' ><data-nametext></data-nametext> <span class='icon-living'></span></div>">主播名称+图标</option>
                         <!--option value="<data-time></data-time>">日期字段</option-->
                         <option value="<data-text></data-text>">普通字段</option>
@@ -367,8 +433,8 @@
                     <input class="checkbox" type="checkbox" id="datadisplay-3" checked="checked" ></input>
                     <div class="text-1" style="height:26px;display: flex; align-items: center; position: relative;  ">数据3：</div>
                     <div id="menu3" >
-                    <input type="text" id="dataName3" value="途径" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
-                    <select id="data-check-3" class="select">
+                    <input type="text" id="dataName3" placeholder="例：途径" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
+                    <select id="data-check-3" class="select" onclick="data3check()">
                         <option value="<data-text></data-text>">普通字段</option>
                         <!--option value="<data-time></data-time>">日期字段</option-->
                         <option value=" <div class='data-mix' ><data-nametext></data-nametext> <span><data-num></data-num></span></div>">名称字段+数量</option>
@@ -382,8 +448,8 @@
                     <input class="checkbox" type="checkbox" id="datadisplay-4" checked="checked"  ></input>
                     <div class="text-1" style="height:26px;display: flex; align-items: center; position: relative;  ">数据4：</div>
                     <div id="menu4" >
-                    <input type="text" id="dataName4" value="获得奖励" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
-                    <select id="data-check-4" class="select">
+                    <input type="text" id="dataName4" placeholder="例：获得奖励" style="width:100px; height:24px; border-radius: 4px; border:1px solid #727272; ">
+                    <select id="data-check-4" class="select" onclick="data4check()">
                         <option value=" <div class='data-mix' ><data-nametext></data-nametext> <span><data-num></data-num></span></div>">名称字段+数量</option>
                         <!--option value="<data-time></data-time>">日期字段</option-->
                         <option value="<data-text></data-text>">普通字段</option>
@@ -393,7 +459,7 @@
                     </select>
                     </div>
                 </div>  
-                <div style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-配置颜色-]</div> 
+                <div class="text-1" style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-配置颜色-]</div> 
                   <!--颜色选择和预览-->
                 <div style=" display: flex; justify-content:left; position: relative; margin: 0 0 10px 10px;">
                     <div class="text-1" style="height:24px;display: flex; align-items: center; position: relative;  ">主题色：</div>
@@ -411,78 +477,196 @@
                     
                 </div>
             </div>
-            <div id="export-img" style="width: 375px; height:600px ; margin: 1vw 0 0 1.1vw;">
+            <div>
                 <!--记录页-->
-                <div class="bg-img" style="transform: scale(0.5); transform-origin: left top;display: flex; flex-direction: column; align-items: center;  width: 750px;height: 1200px; ">
-                    <div id="pickertips" class="tips3" style="display: none;">tips</div>
-                    <div style="width: 750px;height: 144px;"></div>
-                    <div class="table-frame" >
-                        <div class="table-top">
-                            <div id="dataname-1" class="table-top-text">时间</div>
-                            <div id="dataname-2" class="table-top-text">主播</div>
-                            <div id="dataname-3" class="table-top-text">途径</div>
-                            <div id="dataname-4" class="table-top-text">获得奖励</div>
-                        </div>
-                        <div  class="table-line">
-                            <div id="data-0" class="table-line-timetext"><data-time></data-time></div>
-                            <div class="table-line-text">
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span class="icon-living"></span>
-                                </div>
+                <div id="export-img" style="width: 375px; height:600px ; margin-top: 20px;">
+                    
+                    <div class="bg-img" style="transform: scale(0.5); transform-origin: left top;display: flex; flex-direction: column; align-items: center;  width: 750px;height: 1200px; ">
+                        <div id="pickertips" class="tips3" style="display: none;">tips</div>
+                        <!--顶部按钮-->
+                        <div style="width: 750px;height: 100px; min-height: 100px;">
+                            <div class="icon-more" style=" left: 20px; top:20px; position: absolute; display: none;" >
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="66" height="66" viewBox="0 0 66 66"><g><g><rect x="2.53857421875" y="2.53857421875" width="60" height="60" rx="30" fill="#000000" fill-opacity="0.75"/></g><g><path d="M51.784551171875,33.507584921875C51.784551171875,35.750704921875,49.966151171875,37.569124921875,47.723051171875,37.569124921875C45.479851171875,37.569124921875,43.661451171875,35.750704921875,43.661451171875,33.507584921875C43.661451171875,31.264454921875,45.479851171875,29.446044921875,47.723051171875,29.446044921875C49.966151171875,29.446044921875,51.784551171875,31.264454921875,51.784551171875,33.507584921875ZM21.323031171875,33.507584921875C21.323031171875,35.750704921875,19.504611171875,37.569124921875,17.261491171875,37.569124921875C15.018361171875,37.569124921875,13.199951171875,35.750704921875,13.199951171875,33.507584921875C13.199951171875,31.264454921875,15.018361171875,29.446044921875,17.261491171875,29.446044921875C19.504611171875,29.446044921875,21.323031171875,31.264454921875,21.323031171875,33.507584921875ZM36.553751171875,33.507584921875C36.553751171875,35.750704921875,34.735351171874996,37.569124921875,32.492251171875,37.569124921875C30.249151171875,37.569124921875,28.430751171875002,35.750704921875,28.430751171875002,33.507584921875C28.430751171875002,31.264454921875,30.249151171875,29.446044921875,32.492251171875,29.446044921875C34.735351171874996,29.446044921875,36.553751171875,31.264454921875,36.553751171875,33.507584921875Z" fill="#FFFFFF" fill-opacity="1"/></g></g></svg>
                             </div>
-                            <div class="table-line-text"><data-text></data-text></div>
-                            <div class="table-line-text">
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span><data-num></data-num></span>
-                                </div>
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span><data-num></data-num></span>
-                                </div>
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span><data-num></data-num></span>
-                                </div>
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span><data-num></data-num></span>
-                                </div>
+                            <div class="icon-back" style=" left: 20px; top:20px; position: absolute; ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="66" height="66" viewBox="0 0 66 66"><g><g><rect x="2.5384600162506104" y="2.538461446762085" width="60" height="60" rx="30" fill="#000000" fill-opacity="0.75"/></g><g><path d="M37.10367487487793,19.537114862060548C37.69847487487793,20.131914862060547,37.69847487487793,21.096274862060547,37.10367487487793,21.691074862060546C37.10367487487793,21.691074862060546,25.377604874877928,33.417114862060544,25.377604874877928,33.417114862060544C25.377604874877928,33.417114862060544,37.10367487487793,45.14311486206054,37.10367487487793,45.14311486206054C37.69847487487793,45.73791486206055,37.69847487487793,46.70231486206055,37.10367487487793,47.297114862060546C36.50887487487793,47.891914862060545,35.54447487487793,47.891914862060545,34.94967487487793,47.297114862060546C34.94967487487793,47.297114862060546,22.14667387487793,34.494014862060546,22.14667387487793,34.494014862060546C21.86104087487793,34.20841486206055,21.70057475383493,33.82101486206055,21.700574874877997,33.417114862060544C21.70057499592093,33.01311486206055,21.86104187487793,32.62571486206055,22.14667487487793,32.340114862060545C22.14667487487793,32.340114862060545,34.94967487487793,19.537112862060546,34.94967487487793,19.537112862060546C35.54447487487793,18.942314862060545,36.50887487487793,18.942315862060546,37.10367487487793,19.537114862060548Z" fill-rule="evenodd" fill="#FFFFFF" fill-opacity="1"/></g></g></svg>
+                            </div>
+                            <div class="icon-refresh" style="right: 109px; top:20px; position: absolute; " >
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="66" height="66" viewBox="0 0 66 66"><g><g><rect x="2.538461923599243" y="2.538461446762085" width="60" height="60" rx="30" fill="#000000" fill-opacity="0.75"/></g><g><path d="M19.799997122192384,33.00004521484375C19.799997122192384,25.70984521484375,25.709837122192383,19.79999521484375,33.000047122192385,19.79999521484375C38.86074712219238,19.79999521484375,43.83104712219239,23.62058521484375,45.55344712219238,28.90664521484375C45.55344712219238,28.90664521484375,43.42974712219238,27.63244521484375,43.42974712219238,27.63244521484375C42.70844712219238,27.19964521484375,41.772947122192384,27.43354521484375,41.340147122192384,28.15484521484375C40.907347122192384,28.87614521484375,41.14124712219238,29.81174521484375,41.86254712219238,30.24444521484375C41.86254712219238,30.24444521484375,46.939447122192384,33.29064521484375,46.939447122192384,33.29064521484375C47.66074712219238,33.72344521484375,48.596347122192384,33.48954521484375,49.029147122192384,32.768245214843745C49.029147122192384,32.768245214843745,52.07524712219238,27.69134521484375,52.07524712219238,27.69134521484375C52.50804712219238,26.97004521484375,52.27414712219238,26.03444521484375,51.55284712219238,25.60166521484375C50.83154712219238,25.168885214843748,49.89594712219238,25.40277521484375,49.463247122192385,26.12407521484375C49.463247122192385,26.12407521484375,48.41794712219239,27.86624521484375,48.41794712219239,27.86624521484375C46.26884712219238,21.40924521484375,40.17904712219239,16.75384521484375,33.000047122192385,16.75384521484375C24.027497122192383,16.75384521484375,16.753847122192383,24.02749521484375,16.753847122192383,33.00004521484375C16.753847122192383,41.97254521484375,24.027497122192383,49.24614521484375,33.000047122192385,49.24614521484375C38.81524712219238,49.24614521484375,43.91534712219239,46.189745214843754,46.783647122192384,41.603045214843746C47.22964712219238,40.889845214843746,47.01304712219238,39.95014521484375,46.29984712219238,39.504145214843746C45.58664712219238,39.05814521484375,44.64694712219239,39.27474521484375,44.20094712219238,39.98794521484375C41.86594712219238,43.72184521484375,37.721847122192386,46.200045214843755,33.000047122192385,46.200045214843755C25.709837122192383,46.200045214843755,19.799997122192384,40.29014521484375,19.799997122192384,33.00004521484375Z" fill="#FFFFFF" fill-opacity="1"/></g></g></svg>
+                            </div>
+                            <div class="icon-close" style="right: 20px; top:20px; position: absolute; ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="66" height="66" viewBox="0 0 66 66"><g><g><rect x="2.5384628772735596" y="2.538461446762085" width="60" height="60" rx="30" fill="#000000" fill-opacity="0.75"/></g><g><path d="M32.34359348144531,29.174266900024413L22.907743481445312,19.738405900024414C22.312953481445312,19.143606900024412,21.348593481445313,19.143606900024412,20.753792481445313,19.738405900024414C20.15899348144531,20.333206900024415,20.15899348144531,21.297566900024414,20.753792481445313,21.892356900024414L30.189653481445312,31.328206900024412L32.34359348144531,29.174266900024413ZM46.26159348144532,21.892356900024414L35.66169348144531,32.49230690002442L46.26159348144532,43.092206900024415C46.85639348144531,43.687006900024414,46.85639348144531,44.65140690002441,46.26159348144532,45.24620690002442C45.66679348144531,45.84100690002441,44.70239348144531,45.84100690002441,44.10759348144531,45.24620690002442L33.507693481445315,34.64630690002441L22.907743481445312,45.24620690002442C22.312953481445312,45.84100690002441,21.348593481445313,45.84100690002441,20.753792481445313,45.24620690002442C20.15899348144531,44.65140690002441,20.15899348144531,43.687006900024414,20.753792481445313,43.092206900024415L44.10759348144531,19.738405900024414C44.70239348144531,19.143606900024412,45.66679348144531,19.143606900024412,46.26159348144532,19.738405900024414C46.85639348144531,20.333206900024415,46.85639348144531,21.297566900024414,46.26159348144532,21.892356900024414Z" fill-rule="evenodd" fill="#FFFFFF" fill-opacity="1"/></g></g></svg>
                             </div>
                         </div>
-                        <div  class="table-line table-area">
-                            <div class="table-line-timetext"><data-time></data-time></div>
-                            <div class="table-line-text">
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span class="icon-living"></span>
-                                </div>
-                            </div>
-                            <div class="table-line-text"><data-text></data-text></div>
-                            <div class="table-line-text"><div class="data-mix" > <data-nametext></data-nametext> <span><data-num></data-num></span></div></div>
-                        </div>
-                        <div  class="table-line">
-                            <div class="table-line-timetext"><data-time></data-time></div>
-                            <div class="table-line-text">
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span class="icon-living"></span>
-                                </div>
-                            </div>
-                            <div class="table-line-text"><data-text></data-text></div>
-                            <div class="table-line-text">
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span><data-num></data-num></span>
-                                </div>
+                        <!--带一级tab-->
+                        <div id="oneTab" style="width: 750px;height: 120px; display: none;">
+                            <div style="width: 750px;height: 116px; display: flex;justify-content: space-between;margin-top: 42px;">
+                                <div style="width: 100vw;height: 58px; background-color: #848484;color: #ffffff; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center; ">tab1</div>
+                                <div style="width: 100vw;height: 58px; background-color: #e6e6e6;color: #000000; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center;  ">tab2</div>
+                                <div style="width: 100vw;height: 58px; background-color: #e6e6e6;color: #000000; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center;  ">tab3</div>
+                                <div style="width: 100vw;height: 58px; background-color: #e6e6e6;color: #000000; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center; ">tab4</div>
                             </div>
                         </div>
-                        <div  class="table-line table-area">
-                            <div class="table-line-timetext"><data-time></data-time></div>
-                            <div class="table-line-text">
-                                <div class="data-mix" > 
-                                    <data-nametext></data-nametext> <span class="icon-living"></span>
+                        <!--带二级tab-->
+                        <div id="twoTab" style="width: 750px;height: 144px;display: none;flex-direction: column;position: relative;justify-content: center;align-items: center;">
+                            <div style="width: 750px;height: 116px; display: flex;justify-content: space-between;margin-top: 14px;">
+                                <div style="width: 100vw;height: 58px; background-color: #848484;color: #ffffff; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center; ">tab1</div>
+                                <div style="width: 100vw;height: 58px; background-color: #e6e6e6;color: #000000; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center;  ">tab2</div>
+                                <div style="width: 100vw;height: 58px; background-color: #e6e6e6;color: #000000; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center;  ">tab3</div>
+                                <div style="width: 100vw;height: 58px; background-color: #e6e6e6;color: #000000; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center; ">tab4</div>
+                            </div>
+                            <div style="width: 478px;height: 116px; display: flex;justify-content: space-between;margin-top: 10px;">
+                                <div style="width: 100vw;height: 58px; background-color: #848484;color: #ffffff; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center; ">tab1</div>
+                                <div style="width: 100vw;height: 58px; background-color: #e6e6e6;color: #000000; border: #2d2d2d 1px solid;font-size: 28px;text-align: center;display: flex;justify-content: center;align-items: center;  ">tab2</div>
+                            </div>
+                        </div>
+                        <!--无tab-->
+                        <div id="noTab" style="width: 750px;height: 44px;min-height: 44px; display: flex;"></div>
+                        <!--框内滑动-->
+                        <div class="table-frame" >
+                            <div class="table-top">
+                                <div id="dataname-1" class="table-top-text">时间</div>
+                                <div id="dataname-2" class="table-top-text">主播</div>
+                                <div id="dataname-3" class="table-top-text">途径</div>
+                                <div id="dataname-4" class="table-top-text">获得奖励</div>
+                            </div>
+                            <div  class="table-line">
+                                <div id="data-0" class="table-line-timetext"><data-time></data-time></div>
+                                <div class="table-line-text">
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span class="icon-living"></span>
+                                    </div>
+                                </div>
+                                <div class="table-line-text"><data-text></data-text></div>
+                                <div class="table-line-text">
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span><data-num></data-num></span>
+                                    </div>
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span><data-num></data-num></span>
+                                    </div>
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span><data-num></data-num></span>
+                                    </div>
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span><data-num></data-num></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="table-line-text"><data-text></data-text></div>
-                            <div class="table-line-text"><div class="data-mix" > <data-nametext></data-nametext> <span><data-num></data-num></span></div></div>
+                            <div  class="table-line table-area">
+                                <div class="table-line-timetext"><data-time></data-time></div>
+                                <div class="table-line-text">
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span class="icon-living"></span>
+                                    </div>
+                                </div>
+                                <div class="table-line-text"><data-text></data-text></div>
+                                <div class="table-line-text"><div class="data-mix" > <data-nametext></data-nametext> <span><data-num></data-num></span></div></div>
+                            </div>
+                            <div  class="table-line">
+                                <div class="table-line-timetext"><data-time></data-time></div>
+                                <div class="table-line-text">
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span class="icon-living"></span>
+                                    </div>
+                                </div>
+                                <div class="table-line-text"><data-text></data-text></div>
+                                <div class="table-line-text">
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span><data-num></data-num></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="table-line table-area">
+                                <div class="table-line-timetext"><data-time></data-time></div>
+                                <div class="table-line-text">
+                                    <div class="data-mix" > 
+                                        <data-nametext></data-nametext> <span class="icon-living"></span>
+                                    </div>
+                                </div>
+                                <div class="table-line-text"><data-text></data-text></div>
+                                <div class="table-line-text"><div class="data-mix" > <data-nametext></data-nametext> <span><data-num></data-num></span></div></div>
+                            </div>
+                            <div class="note-text" style="margin-top: 20px;">页末文案描述说明位置</div>
                         </div>
+                        <!--无翻页器-->
+                        <div id="nopageCheck" style="width: 750px;height: 40px;min-height: 40px;"></div>
+                        <!--翻页器-->
+                        <div id="pageCheck" style="width: 750px;height: 108px;  display: none; justify-content: space-between; align-items: center;font-size: 28px;color:var(--color3)">
+                            <div style="width: 10px;"></div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> < </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> 1 </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> 2 </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;background-color: var(--color1);"> 3 </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> 4 </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> 5 </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> ... </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> 22 </div>
+                            <div style="width: 48px; height: 48px; border-radius: 10px; border: var(--color3) 1px solid; display: flex; justify-content: center; align-items: center;"> > </div>
+                            <div style="width: 10px;"></div>                       
+                        </div >                       
+                    </div >
+                    
+                </div>
+
+                <!--p class="text-2" style="line-height: 2.5ch;">
+                    底框当前高度:<span id="frameH" style="color: #3da0ad;">1016px</span><br>
+                    底框当前高度:<span id="frameH" style="color: #3da0ad;">1016px</span><br>
+                </p-->
+                
+                <!--增加模块-->
+                <div style="width: 750;display: flex;bottom: 30px; position: absolute; ">
+                    <input type="checkbox" id="oneTabButton" style="display: none;"></input>
+                    <label for="oneTabButton" class="pageModeCheck text-2" style="margin-right: 10px;">一级tab</label>
+                    <input type="checkbox" id="twoTabButton" style="display: none;"></input>
+                    <label for="twoTabButton" class="pageModeCheck text-2" style="margin-right: 10px;">二级tab</label>
+                    <input type="checkbox" id="pageCheckButton" style="display: none;"></input>
+                    <label for="pageCheckButton" class="pageModeCheck text-2">翻页器</label>
+                </div>
+
+            </div>
+            
+            <!--菜单栏2-->
+            <div style="width: 330px; min-width: 330px;  height: 800px; background-color: rgb(219, 219, 219);">
+                <div class="text-1"  style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-默认参数-]</div>
+                <div id="tips1" style="width: auto; height: 120px; margin: 0 10px 10px 10px; position: relative; border-radius: 4px; background-color: #f1f1f1; display: block;" >
+                    <div style="position: relative; text-align: left;  transform: skewX(-10deg); margin-left: 10px; padding: 2px 0 2px 0; font-size: 10px; font-weight: 500; color:#898989;" >
+                      *当前使用
+                      <span style="color:#5189d7">亮字色</span>主题
+                    </div>
+                    <div style="display: flex;">
+                      <div style="width: auto; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#383838;  " >
+                        color5: <span style="-webkit-text-stroke:1px #000000; color: var(--color5);">■</span> h , s , l  <span style="color: #898989;">（主色）// 底框填充</span><br>
+                        color1: <span style="-webkit-text-stroke:1px #000000; color: var(--color1);">■</span> h , s*1.1 , l + 35  <span style="color: #898989;">  // 表头填充、翻页器选中</span><br>
+                        color2: <span style="-webkit-text-stroke:1px #000000; color: var(--color2);">■</span> h , s , l + 50  <span style="color: #898989;">  // 表头字色</span><br>
+                        color3: <span style="-webkit-text-stroke:1px #000000; color: var(--color3);">■</span> h , s*1.1 , l + 6   <span style="color: #898989;">  // 默认字色、底框/翻页器描边</span><br>
+                        color4: <span style="-webkit-text-stroke:1px #000000; color: var(--color4);">■</span> h , s*1.1 , l + 15  <span style="color: #898989;">  // 行间区分色</span><br>
+                        notecolor: <span style="-webkit-text-stroke:1px #000000; color: var(--noteColor);">■</span> rgba(255, 255, 255, 0.4)  <span style="color: #898989;">  // 注释字色</span>          
+                      </div>            
+                    </div>
+                </div>       
+                <div id="tips2" style="width: auto; height: 120px; margin: 0 10px 10px 10px; position: relative; border-radius: 4px; background-color: #f1f1f1; display: none;" >
+                    <div style="position: relative; text-align: left;  transform: skewX(-10deg); margin-left: 10px; padding: 2px 0 2px 0; font-size: 10px; font-weight: 500; color:#898989;" >
+                        *当前使用
+                        <span style="color:#ba3bb8">暗字色</span>主题
+                    </div>
+                    <div style="display: flex;">             
+                        <div style="width: auto; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#383838;  " >
+                            color5: <span style="-webkit-text-stroke:0.5px #000000; color: var(--color5);">■</span> h , s , l  <span style="color: #898989;">（主色）// 底框填充</span><br>
+                            color1: <span style="-webkit-text-stroke:0.5px #000000;; color: var(--color1);">■</span> h , s*0.9 , l - 35  <span style="color: #898989;"> // 表头填充、翻页器选中</span><br>
+                            color2: <span style="-webkit-text-stroke:0.5px #000000;; color: var(--color2);">■</span> h , s , l - 50  <span style="color: #898989;"> // 表头字色</span><br>
+                            color3: <span style="-webkit-text-stroke:0.5px #000000;; color: var(--color3);">■</span> h , s*0.9 , l - 5   <span style="color: #898989;"> // 默认字色、底框/翻页器描边</span><br>
+                            color4: <span style="-webkit-text-stroke:0.5px #000000;; color: var(--color4);">■</span> h , s*0.9 , l - 15  <span style="color: #898989;">  // 行间区分色</span><br>  
+                            notecolor: <span style="-webkit-text-stroke:1px #000000; color: var(--noteColor);">■</span> rgba(0, 0, 0, 0.4)  <span style="color: #898989;"> // 注释字色</span>           
+                        </div>           
                     </div>
                 </div>
+
+                <div class="text-1"  style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-字段类型-]</div>
+                <div class="text-1"  style="height: 26px; margin: 4px 0 4px  14px; display: flex; justify-content:left; align-items: center; position: relative; color: #7c7c7c;">[-布局规则-]</div>
+
             </div>
+
         </div>
     </div>
 </body>
@@ -545,7 +729,17 @@
     customElements.define('data-hltext1', datahltext1);
     customElements.define('data-hltext2', datahltext2);
 
+    
+
     window.onload = function() {
+        dataTimeWs()
+        datanameflex()
+        menudisplay()
+        datanamechange()
+    }
+
+    //判断数据数量控制日期换行
+    function dataTimeWs(){
         const root = document.documentElement;
         var checkboxes = document.getElementsByClassName("checkbox");
         var count = 0;
@@ -556,7 +750,7 @@
         }
         var dataTotal = count
         
-        if (dataTotal > 3 ){
+        if (dataTotal > 2 ){
             root.style.setProperty('--dataTimeW', '6ch')
             root.style.setProperty('--dataNameTextW', '10ch')
             
@@ -569,11 +763,7 @@
         for (var i = 0; i < elements.length; i++) {
             elements[i].id = "data-" + (i + 1);   
         }
-        datanameflex()
-        menudisplay()
-        datanamechange()
     }
-
     
     //判断数据数量、赋予非时间类数据ID
     function dataflex(){
@@ -623,68 +813,149 @@
         dataname4W.style.width = width4 + "px"
     }
 
+    //控制在最少两项数据
+    function mindata() {
+        var checkboxes = document.getElementsByClassName("checkbox");
+
+        for (var i = 0; i < checkboxes.length; i++) {
+
+        checkboxes[i].addEventListener("click", function() {
+            // 计算已取消选择的复选框数量
+            var uncheckedCount = 0;
+            for (var j = 0; j < checkboxes.length; j++) {
+            if (!checkboxes[j].checked) {
+                uncheckedCount++;
+            }
+            }
+            // 如果已取消选择的复选框数量等于2，则将剩下的未取消选择的复选框设置为不可点击
+            if (uncheckedCount == 2) {
+            for (var k = 0; k < checkboxes.length; k++) {
+                if (checkboxes[k].checked) {
+                checkboxes[k].disabled = true;
+                datachecktips()
+                }
+            }
+            }else{
+                for (var k = 0; k < checkboxes.length; k++) {
+                if (checkboxes[k].checked) {
+                checkboxes[k].disabled = false;
+                
+                }
+                
+            }
+            }
+        });
+        }
+
+    }
+
     //增减数据项操作
     function menudisplay(){
         var root = document.documentElement;
+        var menu2 = document.getElementById("menu2");
         var menu3 = document.getElementById("menu3");
         var menu4 = document.getElementById("menu4");
+        var checkbox2 = document.getElementById("datadisplay-2");
         var checkbox3 = document.getElementById("datadisplay-3");
         var checkbox4 = document.getElementById("datadisplay-4");
-
+        var data1 =  document.getElementById("data-1");
         var data2 =  document.getElementById("data-2");
-        var data3 =  document.getElementById("data-3");      
+        var data3 =  document.getElementById("data-3");   
+        var data4 =  document.getElementById("data-4");    
         var data5 =  document.getElementById("data-5");
         var data6 =  document.getElementById("data-6"); 
+        var data7 =  document.getElementById("data-7"); 
         var data8 =  document.getElementById("data-8");     
-        var data9 =  document.getElementById("data-9");  
+        var data9 =  document.getElementById("data-9"); 
+        var data10 =  document.getElementById("data-10");  
         var data11 =  document.getElementById("data-11");            
         var data12 =  document.getElementById("data-12");
-        
+        var dataname2 =  document.getElementById("dataname-2");
         var dataname3 =  document.getElementById("dataname-3");
         var dataname4 =  document.getElementById("dataname-4");
 
 
+        checkbox2.addEventListener('change', function() {    
+        if (checkbox2.checked){
+            menu2.style.pointerEvents = "auto"
+            menu2.style.opacity = "1"
+            data1.style.display = "flex"
+            data4.style.display = "flex"
+            data7.style.display = "flex"
+            data10.style.display = "flex"
+            dataname2.style.display = "block"
+            dataflex()
+            dataTimeWs()
+            mindata()
+            datanameflex()                      
+        }else{
+            menu2.style.pointerEvents = "none"
+            menu2.style.opacity = "0.5"
+            data1.style.display = "none"
+            data4.style.display = "none"
+            data7.style.display = "none" 
+            data10.style.display = "none"            
+            dataname2.style.display = "none"
+            dataflex()
+            dataTimeWs()
+            mindata()
+            datanameflex()        
+        }
+        });
+
         checkbox3.addEventListener('change', function() {    
         if (checkbox3.checked){
-            menu3.style.display = "block"
+            menu3.style.pointerEvents = "auto"
+            menu3.style.opacity = "1"
             data2.style.display = "flex"
             data5.style.display = "flex"
             data8.style.display = "flex"
             data11.style.display = "flex"
             dataname3.style.display = "block"
             dataflex()
-            datanameflex()
+            dataTimeWs()
+            mindata()
+            datanameflex() 
         }else{
-            menu3.style.display = "none"
+            menu3.style.pointerEvents = "none"
+            menu3.style.opacity = "0.5"
             data2.style.display = "none"
             data5.style.display = "none"
             data8.style.display = "none" 
             data11.style.display = "none"            
             dataname3.style.display = "none"
             dataflex()
-            datanameflex()         
+            dataTimeWs()
+            mindata()
+            datanameflex()      
         }
         });
 
         checkbox4.addEventListener('change', function() {
         if (checkbox4.checked){
-            menu4.style.display = "block"
+            menu4.style.pointerEvents = "auto"
+            menu4.style.opacity = "1"
             data3.style.display = "flex"
             data6.style.display = "flex"
             data9.style.display = "flex"
             data12.style.display = "flex"
             dataname4.style.display = "block"
             dataflex()
-            datanameflex()
+            dataTimeWs()
+            mindata()
+            datanameflex() 
         }else{
-            menu4.style.display = "none"
+            menu4.style.pointerEvents = "none"
+            menu4.style.opacity = "0.5"
             data3.style.display = "none"
             data6.style.display = "none"
             data9.style.display = "none"
             data12.style.display = "none"
             dataname4.style.display = "none"
             dataflex()
-            datanameflex()
+            dataTimeWs()
+            mindata()
+            datanameflex() 
         }
         });
     }
@@ -715,16 +986,96 @@
     }
     
     //数据2类型控制
-    function data1check(){
-        var check = document.getElementById("dataname-1");
+    function data2check(){
+        var check = document.getElementById("data-check-2");
+        var container1 = document.getElementById("data-1")
+        var container4 = document.getElementById("data-4")
+        var container7 = document.getElementById("data-7")
+        var container10 = document.getElementById("data-10")
         var type = check.value
+        container1.innerHTML =  type ;
+        container4.innerHTML =  type ;  
+        container7.innerHTML =  type ;  
+        container10.innerHTML =  type ;    
     }
 
     //数据3类型控制
+    function data3check(){
+        var check = document.getElementById("data-check-3");
+        var container2 = document.getElementById("data-2")
+        var container5 = document.getElementById("data-5")
+        var container8 = document.getElementById("data-8")
+        var container11 = document.getElementById("data-11")
+        var type = check.value
+        container2.innerHTML =  type ;
+        container5.innerHTML =  type ;  
+        container8.innerHTML =  type ;  
+        container11.innerHTML =  type ;    
+    }
 
     //数据4类型控制
+    function data4check(){
+        var check = document.getElementById("data-check-4");
+        var container3 = document.getElementById("data-3")
+        var container6 = document.getElementById("data-6")
+        var container9 = document.getElementById("data-9")
+        var container12 = document.getElementById("data-12")
+        var type = check.value
+        container3.innerHTML =  type ;
+        container6.innerHTML =  type ;  
+        container9.innerHTML =  type ;  
+        container12.innerHTML =  type ;    
+    }
 
-    
+    //模块增减控制
+        var oneTabs = document.getElementById('oneTabButton');
+        var twoTabs = document.getElementById('twoTabButton');
+        var pageChecks = document.getElementById('pageCheckButton');
+        var mode1 = document.getElementById('oneTab');
+        var mode2 = document.getElementById('twoTab');
+        var mode3 = document.getElementById('pageCheck');
+        var mode1s = document.getElementById('noTab');
+        var mode3s = document.getElementById('nopageCheck');
+
+        pageChecks.addEventListener('change', function() {
+        if (pageChecks.checked){
+            mode3.style.display = "flex"
+            mode3s.style.display = "none"
+        }else{
+            mode3.style.display = "none"
+            mode3s.style.display = "flex"
+        }
+        });
+
+        oneTabs.addEventListener('change', function() {
+        if (oneTabs.checked){
+            mode1.style.display = "flex"
+            mode1s.style.display = "none" 
+            if (twoTabs.checked){
+                twoTabs.checked = false
+                mode2.style.display = "none"
+            }           
+        }else if (twoTab.checked = "false"){
+            mode1.style.display = "none"
+            mode1s.style.display = "flex"           
+        }
+        });
+
+        twoTabs.addEventListener('change', function() {
+        if (twoTabs.checked){
+            mode2.style.display = "flex"
+            mode1s.style.display = "none"
+            if (oneTabs.checked){
+                oneTabs.checked = false
+                mode1.style.display = "none"
+            }          
+        }else{
+            mode2.style.display = "none"
+            mode1s.style.display = "flex"
+        }
+        });
+
+
     
     //更新颜色
     const colorPicker = document.getElementById('colorPicker');
@@ -753,11 +1104,13 @@
         checkbox.checked = true;
         changeColor()
         updateColorValue()
+        themeSwitchs()
         }else {
         var checkbox = document.getElementById("themeSwitch");
         checkbox.checked = false;
         changeColor()
         updateColorValue()
+        themeSwitchs()
         }
         
     }else{
@@ -777,6 +1130,7 @@
             checkbox.checked = true;
             changeColor()
             updateColorValue()
+            themeSwitchs()
             }
         }else {
             var checkbox = document.getElementById("themeSwitch");
@@ -789,6 +1143,7 @@
             checkbox.checked = false;
             changeColor()
             updateColorValue()
+            themeSwitchs()
             }
         }
     }
@@ -815,7 +1170,7 @@
         root.style.setProperty('--color3', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 50}%)`);
         root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 1.1 }%, ${hsl.l + 6}%)`);
         root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s * 1.1}%, ${hsl.l + 15}%)`);
-        root.style.setProperty('--noteColor','rgba(255,255,255,40)');
+        root.style.setProperty('--noteColor','#ffffff69');
         
     }
     //暗字色主题
@@ -827,29 +1182,41 @@
         root.style.setProperty('--color3', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l - 50}%)`);
         root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 0.9 }%, ${hsl.l - 5}%)`);
         root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s * 0.9}%, ${hsl.l - 15}%)`);
-        root.style.setProperty('--noteColor','rgba(255,255,255,40)');
+        root.style.setProperty('--noteColor','#00000069');
         
     }
 
     //主题切换
     const themeSwitch = document.getElementById('themeSwitch');
     const safaSwitch = document.getElementById('safaSwitch');
+    const tips1 = document.getElementById('tips1');
+    const tips2 = document.getElementById('tips2');
 
     themeSwitch.addEventListener('change', function() {
-    if (this.checked) {
+        themeSwitchs()
+    });
+
+    //判断主题开关
+    function themeSwitchs(){
+        if (themeSwitch.checked) {
         document.documentElement.style.setProperty('--switch1','#c6c6c6');
         document.documentElement.style.setProperty('--switch2','#505050');
-        
+        document.documentElement.style.setProperty('--noteColor','#0000006a');
+        tips1.style.display = "none";
+        tips2.style.display = "block";
         colordark()
         darktips1()
     } else {
         document.documentElement.style.setProperty('--switch1','#707070');
-        document.documentElement.style.setProperty('--switch2','#fff');
-        
+        document.documentElement.style.setProperty('--switch2','#ffffff');
+        document.documentElement.style.setProperty('--noteColor','#ffffff6a');
+        tips1.style.display = "block";
+        tips2.style.display = "none";
         colorlight()
         lighttips1()
     }
-    });
+    }
+
     //安全模式切换（默认开启）
     safaSwitch.addEventListener('change', function() {
     if (this.checked) {
@@ -955,6 +1322,16 @@
         object.style.display = "block";
         object.style.animation = "tipsPickup 1.8s forwards";
         object.innerHTML = "当前文案较长，已自动换行/截断~";
+        setTimeout(function(){
+        object.style.display = "none";      
+        },2000);
+    }
+    //最少数据量提示
+    function datachecktips(){
+    var object = document.getElementById('pickertips');
+        object.style.display = "block";
+        object.style.animation = "tipsPickup 1.8s forwards";
+        object.innerHTML = "至少配置两项数据~";
         setTimeout(function(){
         object.style.display = "none";      
         },2000);
